@@ -14,7 +14,7 @@
         }
         header {
             background: linear-gradient(to right, #AFE3FB, #2470A6);
-            color: white;
+            color: black;
             padding: 10px 20px;
             display: flex;
             align-items: center;
@@ -24,9 +24,10 @@
         header img {
             width: 60px;
             height: 60px;
-            position: absolute;
-            left: 30px;
+            position: absolute; /* Move logo out of the flex center */
+            left: 30px; /* Adjust the space from the left side */
         }
+
         header h1 {
             margin-left: 60px; /* Create space for the logo */
             text-align: center;
@@ -41,9 +42,10 @@
     }
 
     header img {
-        display: none;
-        position: static; /* Đặt logo lại vào vị trí bình thường */
-        margin-bottom: 10px; /* Thêm khoảng cách dưới logo */
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        left: 30px;
     }
 
     header h1 {
@@ -75,6 +77,42 @@
             background-color: #E8DE23;
             border-radius: 5px;
         }
+        .footer-container {
+  background: linear-gradient(to right, #AFE3FB, #2470A6);
+  padding: 40px 0;
+  color: black;
+}
+
+.footer-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.logo-box {
+  text-align: center;
+}
+
+.logo-box img {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.logo-box p {
+  font-weight: bold;
+  margin: 0;
+}
+
+.info-box p {
+  margin: 6px 0;
+  font-size: 16px;
+}
+
         /* Thanh tìm kiếm */
 .search-box {
     width: 200px; /* Đặt chiều rộng lớn hơn */
@@ -234,8 +272,8 @@
         <button type="submit" style="display: none;"></button> <!-- Thêm nút ẩn nếu cần -->
     </form>
         <div class="auth-links">
-    <a href="#">Đăng nhập</a>
-    <a href="#">Đăng ký</a>
+            <div id="dangky"><a href="https://anhtuyet1306.github.io/dangky/">Đăng ký</a></div>
+            <div id="dangnhap"><a href="https://anhtuyet1306.github.io/dangnhap/">Đăng nhập</a></div>
 </div>
 
     </nav>
@@ -498,12 +536,16 @@
         // Gắn sự kiện cho ô tìm kiếm
         document.querySelector('.search-box').addEventListener('input', searchDishes);
     </script>
-    <footer>
-        <div class="contact-info">
-                <h2>Liên Hệ</h2>
-                <p>Địa chỉ: Số 128, Đường Nguyễn Trãi, Đà Nẵng.</p>
-                <p>Email: DaNangTravel12@gmail.com</p>
-                <p>SĐT: 0375124568</p>
-                <p>Hotline: 19001001910</p>
-                <p>Website: https://DaNangTravel12</p>
-            </div>
+    <footer class="footer-container">
+        <div class="footer-content">
+          <div class="info-box">
+            <p><strong>Địa chỉ:</strong> Số 128, Đường Nguyễn Trãi, Đà Nẵng</p>
+            <p><strong>Email:</strong> DaNangTravel12@gmail.com</p>
+            <p><strong>SĐT:</strong> 0375124568</p>
+            <p><strong>Hotline:</strong> 190010010910</p>
+            <p><strong>Website:</strong> https://DaNangTravel12</p>
+          </div>
+        </div>
+      </footer>
+      
+      
