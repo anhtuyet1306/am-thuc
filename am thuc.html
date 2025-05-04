@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ẩm Thực Đà Nẵng</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-size: 18px;
+        }
+        header {
+            background: linear-gradient(to right, #AFE3FB, #2470A6);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center the content */
+        }
+
+        header img {
+            height: 80px;
+            position: absolute; /* Move logo out of the flex center */
+            left: 30px; /* Adjust the space from the left side */
+        }
+
+        header h1 {
+            margin-left: 60px; /* Create space for the logo */
+            text-align: center;
+            flex-grow: 1; /* Make sure h1 takes up the remaining space to center it */
+        }
+        @media (max-width: 768px) {
+    header {
+        background: linear-gradient(to right, #AFE3FB, #2470A6);
+        flex-direction: column; /* Chuyển đổi flex sang cột */
+        align-items: center; /* Căn giữa các phần tử */
+        padding: 20px; /* Thêm padding cho điện thoại */
+    }
+
+    header img {
+        display: none;
+        position: static; /* Đặt logo lại vào vị trí bình thường */
+        margin-bottom: 10px; /* Thêm khoảng cách dưới logo */
+    }
+
+    header h1 {
+        margin-left: 0;
+        font-size: 24px; /* Giảm kích thước chữ trên điện thoại */
+    }
+}
+        
+        nav {
+            background-color: #4192D8;
+            padding: 10px 0;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: inline-block;
+            font-size: 25px;
+        }
+        nav a:hover {
+            background-color: #E8DE23;
+            border-radius: 5px;
+        }
+        /* Thanh tìm kiếm */
+.search-box {
+    width: 200px; /* Đặt chiều rộng lớn hơn */
+    height: 35px; /* Đặt chiều cao lớn hơn */
+    font-size: 16px; /* Đặt kích thước chữ lớn */
+    padding: 5px 15px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    transition: width 0.3s ease-in-out; /* Mượt mà khi thay đổi kích thước */
+}
+
+.search-box:focus {
+    width: 300px; /* Khi focus vào thanh tìm kiếm, nó mở rộng ra */
+}
+
+.search-box button {
+    display: none; /* Giấu nút tìm kiếm */
+}
+
+/* Định dạng cho nút tìm kiếm */
+.search-box button {
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+/* Responsive cho thanh tìm kiếm trên màn hình nhỏ */
+@media (max-width: 768px) {
+    .search-box {
+        width: 100px; /* Đặt lại chiều rộng khi ở màn hình nhỏ */
+        font-size: 14px;
+    }
+
+    .search-box:focus {
+        width: 200px; /* Khi focus vào thanh tìm kiếm, nó mở rộng ra */
+    }
+}
+
+        .content {
+            text-align: left;
+            padding: 40px;
+        }
+        .food-item {
+           display: flex;
+           align-items: center;
+           background: white;
+           padding: 50px; /* tăng từ 40px -> 60px */
+           margin: 25px;  /* tăng từ 20px -> 30px */
+           border-radius: 16px; /* làm góc bo tròn hơn */
+           box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); /* đổ bóng rõ hơn */
+        }
+
+        .food-item img {
+            width: 100%; /* Kích thước rộng cố định */
+            max-width: 400px;
+            height: 250px; /* Kích thước cao cố định */
+            object-fit: cover; /* Đảm bảo ảnh không bị méo, giữ tỷ lệ hợp lý */
+            border-radius: 15px;
+            margin-right: 25px;
+        }
+        .food-item:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease-in-out;
+}
+
+
+        .button {
+            background-color: #E8DE23;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 20px;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #e63946;
+        }
+        footer {
+            background: linear-gradient(to right, #AFE3FB, #2470A6);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        .food-item {
+    position: relative;
+    justify-content: space-between;
+}
+
+.food-item > .button {
+    align-self: center;
+    white-space: nowrap;
+    margin-left: 20px;
+    flex-shrink: 0;
+}
+.auth-links {
+    display: flex;
+    align-items: center;
+}
+
+.auth-links a {
+    color: #4192D8; /* Màu chữ giống màu thanh điều hướng */
+    font-size: 18px;
+    margin-left: 20px;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: background-color 0.3s ease-in-out;
+    background-color: white; /* Màu nền trắng cho từng phần */
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1); /* Bóng nhẹ cho mỗi phần */
+}
+
+.auth-links a:first-child {
+    margin-left: 0; /* Đặt lại margin cho liên kết đầu tiên */
+}
+
+.auth-links a:hover {
+    background-color: #E8DE23; /* Màu nền khi hover */
+    color: white; /* Chữ trắng khi hover */
+}
+
+    </style>
+    <script>
+        function toggleContent(id) {
+    var moreContent = document.getElementById(id);
+    var button = event.target;
+
+    if (moreContent.style.display === "none") {
+        moreContent.style.display = "block";
+        button.textContent = "Ẩn bớt";
+    } else {
+        moreContent.style.display = "none";
+        button.textContent = "Xem thêm";
+    }
+}
+
+    </script>
+    
+</head>
+<body>
+    <header>
+        <img src="tròn-01.png" alt="Logo nhóm">
+        <h1>Ẩm Thực Đà Nẵng</h1>
+    </header>
+    <nav>
+        <div>
+            <a href="#">Trang Chủ</a>
+            <a href="#">Điểm Đến</a>
+            <a href="#">Ẩm Thực</a>
+            <a href="#">Dịch Vụ</a>
+            <a href="#">Tour</a>
+        </div>
+        <form action="#" method="get" style="margin-left: 25px;">
+        <input type="text" class="search-box" name="q" placeholder="Tìm kiếm...">
+        <button type="submit" style="display: none;"></button> <!-- Thêm nút ẩn nếu cần -->
+    </form>
+        <div class="auth-links">
+    <a href="#">Đăng nhập</a>
+    <a href="#">Đăng ký</a>
+</div>
+
+    </nav>
+    <div class="content">
+        <h2>Món Ăn Đặc Sản Đà Nẵng</h2>
+
+        <div class="food-item">
+            <img src="https://i.pinimg.com/736x/e3/c7/4c/e3c74cc99eb5dbb28fac59d81fa15da9.jpg" alt="Mì Quảng">
+            <div>
+                <h3>Mì Quảng Đà Nẵng</h3>
+                <p>Mì Quảng là một trong những món ăn đặc trưng của Đà Nẵng và Quảng Nam, nổi bật với sợi mì vàng mềm, nước dùng đậm đà và nhiều loại topping phong phú. Không giống như phở hay bún có nhiều nước, mì Quảng chỉ chan một ít nước dùng nhưng vẫn đảm bảo độ đậm đà và hấp dẫn.</p>
+                </div>
+                <a href="javascript:void(0);" class="button" onclick="toggleContent('moreMiq')">Xem thêm</a>
+                <div id="moreMiq" style="display:none;">
+                    <h4> Thành phần chính</h4>
+                    <ul>
+                        <li><strong>Sợi mì:</strong> Làm từ bột gạo, có màu vàng nhẹ do nhuộm nghệ, mềm nhưng vẫn có độ dai.</li>
+                        <li><strong>Nước dùng:</strong> Nấu từ xương heo hoặc gà, kết hợp với tôm, thịt heo hoặc gà.</li>
+                        <li><strong>Topping:</strong>
+                            <ul>
+                                <li>Tôm rim.</li>
+                                <li>Thịt heo hoặc thịt gà.</li>
+                                <li>Trứng cút luộc.</li>
+                                <li>Bánh tráng mè nướng giòn.</li>
+                                <li>Đậu phộng rang.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Rau ăn kèm:</strong> Bắp chuối, rau thơm, giá sống, húng quế, ngò rí.</li>
+                        <li><strong>Gia vị:</strong> Chanh, ớt, nước mắm tỏi ớt để tăng hương vị.</li>
+                    </ul>
+                    <h4> Cách chế biến</h4>
+                    <ol>
+                        <li><strong>Nấu nước dùng:</strong> Hầm xương heo hoặc gà để lấy nước ngọt. Phi hành, tỏi rồi xào tôm, thịt với gia vị, sau đó cho vào nước dùng.</li>
+                        <li><strong>Chuẩn bị sợi mì:</strong> Trụng sợi mì trong nước sôi rồi để ráo.</li>
+                        <li><strong>Trình bày món ăn:</strong> Cho mì vào tô, thêm topping. Chan một ít nước dùng. Rắc đậu phộng, hành phi, thêm rau sống và bánh tráng.</li>
+                    </ol>
+
+                    <h4> Địa điểm ăn Mì Quảng ngon ở Đà Nẵng</h4>
+                    <ul>
+                        <li><strong>Mì Quảng Bà Mua</strong> – 19 Trần Bình Trọng.</li>
+                        <li><strong>Mì Quảng 1A</strong> – 1A Hải Phòng.</li>
+                        <li><strong>Mì Quảng Bích</strong> – 1-3-5 Đặng Dung.</li>
+                        <li><strong>Mì Quảng Thi</strong> – 251 Hoàng Diệu.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="food-item">
+            <img src="https://i.pinimg.com/736x/c5/f0/9d/c5f09d64c2c3867364f44fb6a2d6829d.jpg" alt="Gỏi Cá Nam Ô">
+            <div>
+                <h3>Gỏi Cá Nam Ô</h3>
+                <p>Đến với Đà Nẵng, chúng ta không thể quên thử món ngon nức tiếng Gỏi cá Nam Ô. Gỏi được chia thành 2 loại: khô và ướt.</p>
+                </div>
+                <a href="javascript:void(0);" class="button" onclick="toggleContent('moreGoi')">Xem thêm</a>
+                <div id="moreGoi" style="display:none;">
+                    <h4> Thành phần chính</h4>
+                    <ul>
+                        <li><strong>Cá:</strong> Cá tươi sống, thường là cá cơm hoặc cá trích.</li>
+                        <li><strong>Gia vị:</strong> Chanh, ớt, nước mắm, tỏi, và một ít đường để làm nước mắm trộn gỏi.</li>
+                        <li><strong>Rau ăn kèm:</strong> Rau thơm, giá sống, bắp chuối, húng quế.</li>
+                        <li><strong>Vỏ bánh tráng:</strong> Dùng để cuốn gỏi cùng với các loại rau sống và cá.</li>
+                    </ul>
+
+                    <h4> Cách chế biến</h4>
+                    <ol>
+                        <li><strong>Chuẩn bị cá:</strong> Cá tươi sống được làm sạch, bỏ xương và thái lát mỏng.</li>
+                        <li><strong>Trộn gỏi:</strong> Trộn cá với các gia vị như chanh, nước mắm, ớt, tỏi và một ít đường để tạo hương vị đặc trưng.</li>
+                        <li><strong>Trình bày:</strong> Dùng bánh tráng cuốn gỏi cùng với rau sống và các loại gia vị. Ăn kèm với nước mắm tỏi ớt.</li>
+                    </ol>
+
+                    <h4> Địa điểm ăn Gỏi Cá Nam Ô ngon ở Đà Nẵng</h4>
+                    <ul>
+                        <li><strong>Gỏi Cá Nam Ô</strong> – 132 Lê Duẩn.</li>
+                        <li><strong>Gỏi Cá Nam Ô</strong> – 108 Hoàng Diệu.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+                <div class="food-item">
+            <img src="https://vpdt.vietrantour.com.vn/data/upload/2022/0425/photo1jpg.jpg" alt="Bánh Xèo, Nem Lụi">
+            <div>
+                <h3>Bánh Xèo, Nem Lụi</h3>
+                <p>Bánh xèo nhân tôm thịt được rán giòn vàng đều kết hợp cuốn cùng chiếc nem lụi bọc sả thơm ngon, các loại rau sống tươi xanh và chấm thêm với chút nước chấm đậu phộng béo ngậy thì còn gì tuyệt vời hơn nữa.</p> 
+                </div>
+                <a href="javascript:void(0);" class="button" onclick="toggleContent('banhXeo')">Xem thêm</a>
+                <div id="banhXeo" style="display:none;">
+                    <h4> Thành phần chính</h4>
+    <ul>
+        <li><strong>Bánh xèo:</strong> Bánh làm từ bột gạo pha với nước cốt dừa, chiên giòn.</li>
+        <li><strong>Nem lụi:</strong> Thịt nướng được cuộn trong lá sả, dùng cùng rau sống.</li>
+        <li><strong>Gia vị:</strong> Nước mắm tỏi ớt, đậu phộng rang.</li>
+    </ul>
+
+    <h4> Cách chế biến</h4>
+    <ol>
+        <li><strong>Chuẩn bị bánh xèo:</strong> Pha bột, đổ vào chảo, cho nhân tôm, thịt vào rồi chiên giòn.</li>
+        <li><strong>Chuẩn bị nem lụi:</strong> Tạo hình nem từ thịt nạc, cuốn trong lá sả rồi nướng trên lửa than.</li>
+        <li><strong>Trình bày món ăn:</strong> Bánh xèo được cắt thành miếng nhỏ, cuốn với rau sống và nem lụi. Chấm với nước mắm đậu phộng.</li>
+    </ol>
+
+    <h4> Địa điểm ăn Bánh Xèo, Nem Lụi ngon ở Đà Nẵng</h4>
+    <ul>
+        <li><strong>Bánh Xèo Ba Dưỡng</strong> – 23 Phan Châu Trinh.</li>
+        <li><strong>Nem Lụi Mỹ Hạnh</strong> – 34 Hoàng Diệu.</li>
+    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="food-item">
+            <img src="https://vpdt.vietrantour.com.vn/data/upload/2022/0425/banh-trang-thit-heo-chuan-vi-da-nang.jpg" alt="Bánh Cuốn Thịt Heo">
+            <div>
+                <h3>Bánh Cuốn Thịt Heo</h3>
+                <p>Đến với Đà Nẵng, bạn sẽ được thưởng thức món này cùng loại thịt heo ngon nạc mỡ xen kẽ, luộc chín tới và thái mỏng vừa ăn.</p>
+                </div>
+                <a href="javascript:void(0);" class="button" onclick="toggleContent('banhCuon')">Xem thêm</a>
+                <div id="banhCuon" style="display:none;">
+                    <h4> Thành phần chính</h4>
+    <ul>
+        <li><strong>Bánh cuốn:</strong> Bánh làm từ bột gạo, mềm mịn, cuộn cùng thịt heo, nấm, mộc nhĩ.</li>
+        <li><strong>Thịt heo:</strong> Thịt heo luộc, thái mỏng, kèm với mỡ hành, đậu phộng rang.</li>
+    </ul>
+
+    <h4> Cách chế biến</h4>
+    <ol>
+        <li><strong>Chuẩn bị bánh cuốn:</strong> Pha bột, đổ vào khuôn, hấp cho chín.</li>
+        <li><strong>Chuẩn bị thịt heo:</strong> Thịt heo luộc chín tới, thái mỏng rồi xếp lên bánh cuốn.</li>
+        <li><strong>Trình bày món ăn:</strong> Bánh cuốn được cuộn lại, cho thịt heo lên trên, rắc đậu phộng rang và mỡ hành.</li>
+    </ol>
+
+    <h4> Địa điểm ăn Bánh Cuốn Thịt Heo ngon ở Đà Nẵng</h4>
+    <ul>
+        <li><strong>Bánh Cuốn Mỹ Hạnh</strong> – 33 Trần Phú.</li>
+        <li><strong>Bánh Cuốn Bà Mua</strong> – 18 Hoàng Diệu.</li>
+    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="food-item">
+            <img src="https://i.pinimg.com/736x/da/6d/af/da6dafc4f8741588659f6e6310fe1f10.jpg" alt="Bê Thui Cầu Mống">
+            <div>
+                <h3>Bê Thui Cầu Mống</h3>
+                <p>Cầu Mống là ngôi làng nổi tiếng với món bê thui gia truyền lâu đời. Bê thui ở đây ngon nức danh xứ Quảng và có hương vị khó nơi nào sánh bằng.</p>
+                </div>
+                <a href="javascript:void(0);" class="button" onclick="toggleContent('beThui')">Xem thêm</a>
+                <div id="beThui" style="display:none;">
+                    <h4> Thành phần chính</h4>
+    <ul>
+        <li><strong>Bê thui:</strong> Thịt bê thui được chế biến từ bê tơ non, được thui bằng lửa than cho vàng giòn.</li>
+        <li><strong>Gia vị:</strong> Nước mắm tỏi ớt, mắm nêm.</li>
+        <li><strong>Rau ăn kèm:</strong> Rau sống, bánh tráng, dưa leo, chuối chát.</li>
+    </ul>
+
+    <h4> Cách chế biến</h4>
+    <ol>
+        <li><strong>Chuẩn bị bê thui:</strong> Bê tơ non được thui bằng lửa, rồi thái mỏng, chuẩn bị cùng gia vị.</li>
+        <li><strong>Trình bày món ăn:</strong> Bê thui được xếp lên đĩa, ăn kèm với rau sống, bánh tráng và mắm nêm.</li>
+    </ol>
+
+    <h4> Địa điểm ăn Bê Thui Cầu Mống ngon ở Đà Nẵng</h4>
+    <ul>
+        <li><strong>Bê Thui Cầu Mống</strong> – 13 Cầu Mống.</li>
+        <li><strong>Bê Thui Sông Hàn</strong> – 28 Trần Quang Khải.</li>
+    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="food-item">
+            <img src="https://vpdt.vietrantour.com.vn/data/upload/2022/0425/foody-upload-api-foody-mobile-banh-chi-jpg-180816130121.jpg" alt="Món Bánh">
+            <div>
+                <h3>Món Bánh Bèo</h3>
+                <p>Miền Trung nói chung và Đà Nẵng nói riêng, có rất nhiều loại bánh đặc sản mà ai đến nơi đây cũng phải thử một lần. Các loại bánh hầu như làm bằng bột gạo hoặc bột nếp, chế biến cùng những nguyên liệu dân dã và nước chấm tự pha.</p>
+                </div>
+                <a href="javascript:void(0);" class="button" onclick="toggleContent('monBanh')">Xem thêm</a>
+                <div id="monBanh" style="display:none;">
+                    <h4> Thành phần chính</h4>
+    <ul>
+        <li><strong>Bánh nếp:</strong> Bánh làm từ bột nếp, nhân đậu xanh, hoặc nhân thịt.</li>
+        <li><strong>Bánh gạo:</strong> Bánh được làm từ bột gạo, thường kết hợp với các loại nhân phong phú.</li>
+    </ul>
+
+    <h4> Cách chế biến</h4>
+    <ol>
+        <li><strong>Chuẩn bị bột:</strong> Trộn bột gạo hoặc bột nếp với nước, tạo thành hỗn hợp bột nhão.</li>
+        <li><strong>Gói bánh:</strong> Nhồi nhân vào bột, sau đó gói thành hình tròn hoặc vuông.</li>
+        <li><strong>Hấp bánh:</strong> Bánh được hấp chín rồi dọn ra đĩa ăn kèm với nước mắm.</li>
+    </ol>
+
+    <h4> Địa điểm ăn Bánh ngon ở Đà Nẵng</h4>
+    <ul>
+        <li><strong>Bánh Đà Nẵng</strong> – 45 Lê Duẩn.</li>
+        <li><strong>Bánh Bèo</strong> – 78 Hải Phòng.</li>
+    </ul>
+                </div>
+            </div>
+        </div>
+
+                <div class="food-item">
+            <img src="https://vpdt.vietrantour.com.vn/data/upload/2022/0425/foody-mobile-6-jpg.jpg" alt="Hải Sản">
+            <div>
+                <h3>Hải Sản</h3>
+                <p>Đến với Đà Nẵng là đến với du lịch biển. Chính vì vậy, trong cuộc hành trình khám phá ẩm thực Đà Nẵng thì hải sản là điều luôn luôn phải nhắc đến. Được thiên nhiên ban tặng đa dạng hệ sinh vật trong thiên nhiên, Đà Nẵng có vô số loài hải sản tươi ngon và ngập tràn những món ăn được chế biến phong phú, hấp dẫn.</p>
+                </div>
+                <a href="javascript:void(0);" class="button" onclick="toggleContent('haiSan')">Xem thêm</a>
+                <div id="haiSan" style="display:none;">
+                    <h4> Thành phần chính</h4>
+                    <ul>
+                        <li><strong>Hải sản:</strong> Tôm, cua, mực, cá, sò, vẹm...</li>
+                        <li><strong>Gia vị:</strong> Nước mắm tỏi ớt, gia vị riêng biệt như muối tiêu chanh, hoặc gia vị nướng.</li>
+                    </ul>
+
+                    <h4> Cách chế biến</h4>
+                    <ol>
+                        <li><strong>Chế biến hải sản:</strong> Hải sản được làm sạch, sau đó có thể chế biến nướng, xào, hấp hoặc làm gỏi.</li>
+                        <li><strong>Trình bày món ăn:</strong> Hải sản được bày ra đĩa cùng với gia vị và rau sống.</li>
+                    </ol>
+
+                    <h4> Địa điểm ăn Hải Sản ngon ở Đà Nẵng</h4>
+                    <ul>
+                        <li><strong>Hải Sản Bé Anh</strong> – 15 Nguyễn Chí Thanh.</li>
+                        <li><strong>Hải Sản Đà Nẵng</strong> – 88 Võ Nguyên Giáp.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    <script>
+        // Hàm tìm kiếm món ăn và sắp xếp lại món ăn phù hợp
+        function searchDishes() {
+            var query = document.querySelector('.search-box').value.toLowerCase();
+            var foodItems = document.querySelectorAll('.food-item');
+            var foodItemsArray = Array.from(foodItems);
+
+            // Lọc và sắp xếp món ăn dựa trên từ khóa tìm kiếm
+            var filteredFoodItems = foodItemsArray.filter(function(item) {
+                return item.textContent.toLowerCase().includes(query);
+            });
+
+            // Hiển thị các món ăn phù hợp lên đầu
+            var remainingFoodItems = foodItemsArray.filter(function(item) {
+                return !item.textContent.toLowerCase().includes(query);
+            });
+
+            // Sắp xếp lại danh sách món ăn
+            var allFoodItems = [...filteredFoodItems, ...remainingFoodItems];
+
+            // Hiển thị lại các món ăn sau khi sắp xếp
+            var foodContainer = document.querySelector('.content');
+            foodContainer.innerHTML = ''; // Xóa các món ăn cũ trước khi hiển thị lại
+            allFoodItems.forEach(function(item) {
+                foodContainer.appendChild(item); // Thêm các món ăn vào lại
+            });
+        }
+
+        // Gắn sự kiện cho ô tìm kiếm
+        document.querySelector('.search-box').addEventListener('input', searchDishes);
+    </script>
+    <footer>
+        <div class="contact-info">
+                <h2>Liên Hệ</h2>
+                <p>Địa chỉ: Số 128, Đường Nguyễn Trãi, Đà Nẵng.</p>
+                <p>Email: DaNangTravel12@gmail.com</p>
+                <p>SĐT: 0375124568</p>
+                <p>Hotline: 19001001910</p>
+                <p>Website: https://DaNangTravel12</p>
+            </div>
